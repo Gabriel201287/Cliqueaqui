@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head><meta charset="UTF-8"><title>Localização</title></head>
+<body>
+<h2>Precisamos da sua localização</h2>
+<button onclick="getLocation()">Clique aqui</button>
+<script>
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(sendLocation, showError);
+  } else alert("Sem suporte!");
+}
+function sendLocation(pos) {
+  const link = `https://api.whatsapp.com/send?phone=5511972023458&text=Minha localização é: https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`;
+  window.location.href = link;
+}
+function showError(err){
+  alert("Erro: "+err.message);
+}
+</script>
+</body>
+</html>
